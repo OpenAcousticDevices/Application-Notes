@@ -1,7 +1,7 @@
 import re
 import csv
 
-from os import listdir
+from os import listdir, stat
 from os.path import isfile, join
 from datetime import datetime, timezone, timedelta
 
@@ -20,9 +20,11 @@ with open("comments.csv", "w", newline="") as csvfile:
     
   for i, fi in enumerate(sorted(files)):
     
-    if os.stat(join(directory, fi)).st_size > 0:
+    if stat(join(directory, fi)).st_size > 0:
 
       with open(join(directory, fi), "rb") as f:
+
+        print("Processing " + fi)
           
         # Read the comment out of the input file
 
