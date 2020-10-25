@@ -1,2 +1,2 @@
 # Open Acoustic Devices Application Notes
-White papers relating to work carried out by Open Acoustic Devices.
+Papers relating to work carried out by Open Acoustic Devices.
