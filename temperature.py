@@ -34,7 +34,7 @@ with open("comments.csv", "w", newline="") as csvfile:
 
         # Read the time and timezone from the header
 
-        ts = re.search(r"Recorded at (\d\d:\d\d:\d\d \d\d/\d\d/\d\d\d\d)", comment)[1]
+        ts = re.search(r"(\d\d:\d\d:\d\d \d\d/\d\d/\d\d\d\d)", comment)[1]
 
         tz = re.search(r"\(UTC([-|+]\d+)?:?(\d\d)?\)", comment)
 
@@ -48,9 +48,9 @@ with open("comments.csv", "w", newline="") as csvfile:
 
         # Read the battery voltage and temperature from the header
 
-        battery = re.search(r"battery state was (\d.\d)V", comment)[1]
+        battery = re.search(r"(\d.\d)V", comment)[1]
 
-        temperature = re.search(r"temperature was (-?\d+.\d)C", comment)[1]
+        temperature = re.search(r"(-?\d+.\d)C", comment)[1]
 
         # Print the output row
       
