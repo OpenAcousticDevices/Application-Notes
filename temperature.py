@@ -48,9 +48,9 @@ with open("comments.csv", "w", newline="") as csvfile:
 
         # Read the battery voltage and temperature from the header
 
-        battery = re.search(r"(\d.\d)V", comment)[1]
+        battery = re.search(r"(\d\.\d)V", comment)[1]
 
-        temperature = re.search(r"(-?\d+.\d)C", comment)[1]
+        temperature = re.search(r"(-?\d+\.\d)C", comment)[1]
 
         # Print the output row
       
