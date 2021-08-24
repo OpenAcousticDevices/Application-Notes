@@ -9,7 +9,7 @@
 
 /* Encoded block constant */
 
-#define ENCODED_BLOCK_SIZE_IN_BYTES    512
+#define ENCODED_BLOCK_SIZE_IN_BYTES         512
 
 /* Useful type constants */
 
