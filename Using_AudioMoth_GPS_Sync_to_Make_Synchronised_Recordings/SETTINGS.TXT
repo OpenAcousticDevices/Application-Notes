@@ -1,0 +1,74 @@
+This is a default settings file. White space and indentation is ignored during parsing, but the order of the terms must be maintained. Anything before the first opening brace, {, and after the first closing brace, }, is ignored.
+
+The settings are read when the switch is moved from USB/OFF to DEFAULT or CUSTOM and parsing errors are indicated by flashing both LED. The reason for the error will be reported in the LOG.TXT file.
+
+There are two main recording options. The first one is for fixed starting times and provides a list of up to MAX_RECORDING_PERIODS = 10 active recording periods can be included. The recording periods must be in order of increasing start time and must not overlap. 
+
+The second main option uses the GPS to acquire sunset and sunrise times, and calculates the recording periods appropriately. There are five modes set by the sunRecordingMode parameter. 
+
+    Mode (0) makes one recording around sunrise.
+    Mode (1) makes one recording around sunset.
+    Mode (2) makes two separate recordings around both sunrise and sunset. 
+    Mode (3) records during the day from before sunset to after sunrise.
+    Mode (4) records during the night from before sunrise to after sunset.
+
+The settings file should contain either a recordingPeriods list or a sunRecording object. Both firstRecordingDate and lastRecordingDate are optional.
+
+Here is an example using a recordingPeriods list.
+
+{
+    gain: 2,
+    sampleRate: 48000,
+    enableDailyFolders: 0,
+    enableLowGainRange: 0,
+    enableMagneticSwitch: 0,
+    disable48HzDCBlockingFilter: 0,
+    enableAlternativeBatteryVoltageRange: 0,
+    initialFixDuration: 180,
+    intervalToNextFixAttempt: 120,
+    recordingFixDuration: 240,
+    recordingPeriods: [
+        { startTime: "04:00", stopTime: "08:00" },
+        { startTime: "20:00", stopTime: "24:00" }
+    ],
+    firstRecordingDate: "01/06/2022",
+    lastRecordingDate: "01/07/2022"
+}
+
+Here is an alternate example that uses a sunRecording object. This one will be ignored since the one above will be read and parsed first.
+
+{
+    gain: 2,
+    sampleRate: 48000,
+    enableDailyFolders: 0,
+    enableLowGainRange: 0,
+    enableMagneticSwitch: 0,
+    disable48HzDCBlockingFilter: 0,
+    enableAlternativeBatteryVoltageRange: 0,
+    initialFixDuration: 180,
+    intervalToNextFixAttempt: 120,
+    recordingFixDuration: 240,
+    sunRecording: { 
+        sunRecordingMode: 0,
+        sunRoundingMinutes: 5,
+        sunriseInterval: {beforeMinutes: 30, afterMinutes: 30},
+        sunsetInterval: {beforeMinutes: 30, afterMinutes: 30}
+    },
+    firstRecordingDate: "01/06/2022",
+    lastRecordingDate: "01/07/2022"
+}
+
+The constraints imposed by the parser are:
+
+    1. gain = 0, 1, 2, 3 or 4
+    2. sampleRate = 8000, 16000, 32000, 48000, 96000 or 125000
+    3. enableLowGainRange, enableMagneticSwitch, disable48HzDCBlockingFilter and enableAlternativeVoltageRange = 0 or 1
+    4. 0 <= initialFixDuration, intervalToNextFixAttempt, recordingFixDuration <= 3600
+    5. sunRecordingMode = 0, 1, 2, 3 or 4
+    6. 0 <= sunRoundingMinutes, beforeMinutes, afterMinutes <= 360
+
+Some additional notes:
+
+    1. The value of startTime and stopTime are given by hh:mm with 24:00 being accepted as midnight. 
+    2. It is possible for the recording period to span midnight (e.g. { startTime: "20:00", stopTime: "04:00" }).
+
