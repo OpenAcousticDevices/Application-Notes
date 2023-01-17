@@ -1,4 +1,4 @@
-This is a default settings file. White space and indentation is ignored during parsing, but the order of the terms must be maintained. Anything before the first opening brace, {, and after the first closing brace, }, is ignored.
+This is a default settings file. White space and indentation is ignored during parsing, but the order of the terms must be maintained. Anything before the first opening brace, and after the first closing brace, is ignored.
 
 The settings are read when the switch is moved from USB/OFF to DEFAULT or CUSTOM and parsing errors are indicated by flashing both LED. The reason for the error will be reported in the LOG.TXT file.
 
