@@ -9,8 +9,8 @@ The second main option uses the GPS to acquire sunset and sunrise times, and cal
     Mode (0) makes one recording around sunrise.
     Mode (1) makes one recording around sunset.
     Mode (2) makes two separate recordings around both sunrise and sunset. 
-    Mode (3) records during the night from before sunrise to after sunset.
-    Mode (4) records during the day from before sunset to after sunrise.
+    Mode (3) records during the night from before sunset to after sunrise.
+    Mode (4) records during the day from before sunrise to after sunset.
 
 The settings file should contain either a recordingPeriods list or a sunRecording object. Both firstRecordingDate and lastRecordingDate are optional.
 
