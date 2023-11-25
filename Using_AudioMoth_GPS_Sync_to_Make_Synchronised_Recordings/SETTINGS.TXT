@@ -28,8 +28,8 @@ Here is an example using a recordingPeriods list.
     intervalToNextFixAttempt: 120,
     recordingFixDuration: 240,
     recordingPeriods: [
-        { startTime: "04:00", stopTime: "08:00" },
-        { startTime: "20:00", stopTime: "24:00" }
+        { startTime: "04:00", endTime: "08:00" },
+        { startTime: "20:00", endTime: "24:00" }
     ],
     firstRecordingDate: "01/06/2022",
     lastRecordingDate: "01/07/2022"
