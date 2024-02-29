@@ -36,11 +36,11 @@ with open("comments.csv", "w", newline="") as csvfile:
 
         ts = re.search(r"(\d\d:\d\d:\d\d \d\d/\d\d/\d\d\d\d)", comment)[1]
 
-        tz = re.search(r"\(UTC([-|+]\d+)?:?(\d\d)?\)", comment)
+        tz = re.search(r"\(UTC(([-|+])\d+)?:?(\d\d)?\)", comment)
 
         hrs = 0 if tz[1] is None else int(tz[1])
 
-        mins = 0 if tz[2] is None else -int(tz[2]) if hrs < 0 else int(tz[2])
+        mins = 0 if tz[3] is None else -int(tz[3]) if '-' in tz[2] else int(tz[3])
 
         timestamp = datetime.strptime(ts, "%H:%M:%S %d/%m/%Y")
           
