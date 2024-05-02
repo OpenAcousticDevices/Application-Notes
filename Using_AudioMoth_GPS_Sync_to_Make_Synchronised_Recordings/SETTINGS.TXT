@@ -24,9 +24,9 @@ Here is an example using a recordingPeriods list.
     enableMagneticSwitch: 0,
     disable48HzDCBlockingFilter: 0,
     enableAlternativeBatteryVoltageRange: 0,
-    initialFixDuration: 180,
-    intervalToNextFixAttempt: 120,
-    recordingFixDuration: 240,
+    initialFixDuration: 120,
+    intervalToNextFixAttempt: 60,
+    recordingFixDuration: 60,
     recordingPeriods: [
         { startTime: "04:00", endTime: "08:00" },
         { startTime: "20:00", endTime: "24:00" }
@@ -45,9 +45,9 @@ Here is an alternate example that uses a sunRecording object. This one will be i
     enableMagneticSwitch: 0,
     disable48HzDCBlockingFilter: 0,
     enableAlternativeBatteryVoltageRange: 0,
-    initialFixDuration: 180,
-    intervalToNextFixAttempt: 120,
-    recordingFixDuration: 240,
+    initialFixDuration: 120,
+    intervalToNextFixAttempt: 60,
+    recordingFixDuration: 60,
     sunRecording: { 
         sunRecordingMode: 0,
         sunRoundingMinutes: 5,
