@@ -12,14 +12,26 @@ The second main option uses the GPS to acquire sunset and sunrise times, and cal
     Mode (3) records during the night from before sunset to after sunrise.
     Mode (4) records during the day from before sunrise to after sunset.
 
-The settings file should contain either a recordingPeriods list or a sunRecording object. Both firstRecordingDate and lastRecordingDate are optional.
+There are four options set by the sunRecordingEvent parameter.
 
-Here is an example using a recordingPeriods list.
+    Mode (0) uses sunrise and sunset.
+    Mode (1) uses civil dawn and dusk.
+    Mode (2) uses nautical dawn and dusk.
+    Mode (3) uses astronomical dawn and dusk.
+
+The settings file should contain either a recordingPeriods list or a sunRecording object. 
+
+Both firstRecordingDate and lastRecordingDate are optional. 
+
+An optional sleep/record cycle can be used with the additional constraint that the sleepDuration must be equal or greater than recordingFixDuration.
+
+Here is an example using a recordingPeriods list with a sleep/record cycle.
 
 {
     gain: 2,
     sampleRate: 48000,
     enableDailyFolders: 0,
+    enableFilenameWithDeviceID: 0,
     enableLowGainRange: 0,
     enableMagneticSwitch: 0,
     disable48HzDCBlockingFilter: 0,
@@ -27,15 +39,19 @@ Here is an example using a recordingPeriods list.
     initialFixDuration: 120,
     intervalToNextFixAttempt: 60,
     recordingFixDuration: 60,
+    sleepRecordCycle: {
+        sleepDuration: 60,
+        recordDuration: 240
+    },
     recordingPeriods: [
         { startTime: "04:00", endTime: "08:00" },
         { startTime: "20:00", endTime: "24:00" }
     ],
-    firstRecordingDate: "01/06/2022",
-    lastRecordingDate: "01/07/2022"
+    firstRecordingDate: "01/06/2024",
+    lastRecordingDate: "01/07/2026"
 }
 
-Here is an alternate example that uses a sunRecording object. This one will be ignored since the one above will be read and parsed first.
+Here is an alternate example that uses a sunRecording object with a sleep/record cycle. This one will be ignored since the one above will be read and parsed first.
 
 {
     gain: 2,
@@ -48,14 +64,19 @@ Here is an alternate example that uses a sunRecording object. This one will be i
     initialFixDuration: 120,
     intervalToNextFixAttempt: 60,
     recordingFixDuration: 60,
+    sleepRecordCycle: {
+        sleepDuration: 60,
+        recordDuration: 240
+    },
     sunRecording: { 
         sunRecordingMode: 0,
+        sunRecordingEvent: 1,
         sunRoundingMinutes: 5,
         sunriseInterval: {beforeMinutes: 30, afterMinutes: 30},
         sunsetInterval: {beforeMinutes: 30, afterMinutes: 30}
     },
-    firstRecordingDate: "01/06/2022",
-    lastRecordingDate: "01/07/2022"
+    firstRecordingDate: "01/06/2024",
+    lastRecordingDate: "01/07/2026"
 }
 
 The constraints imposed by the parser are:
@@ -65,7 +86,9 @@ The constraints imposed by the parser are:
     3. enableLowGainRange, enableMagneticSwitch, disable48HzDCBlockingFilter and enableAlternativeVoltageRange = 0 or 1
     4. 0 <= initialFixDuration, intervalToNextFixAttempt, recordingFixDuration <= 3600
     5. sunRecordingMode = 0, 1, 2, 3 or 4
-    6. 0 <= sunRoundingMinutes, beforeMinutes, afterMinutes <= 360
+    6. sunRecordingEvent = 0, 1, 2 or 3
+    7. 0 <= sunRoundingMinutes, beforeMinutes, afterMinutes <= 360
+    8. sleepDuration >= recordingFixDuration
 
 Some additional notes:
 
