@@ -82,7 +82,7 @@ Here is an alternate example that uses a sunRecording object with a sleep/record
 The constraints imposed by the parser are:
 
     1. gain = 0, 1, 2, 3 or 4
-    2. sampleRate = 8000, 16000, 32000, 48000, 96000 or 125000
+    2. sampleRate = 8000, 16000, 32000, 48000, 96000, 125000 or 192000
     3. enableLowGainRange, enableMagneticSwitch, disable48HzDCBlockingFilter and enableAlternativeVoltageRange = 0 or 1
     4. 0 <= initialFixDuration, intervalToNextFixAttempt, recordingFixDuration <= 3600
     5. sunRecordingMode = 0, 1, 2, 3 or 4
